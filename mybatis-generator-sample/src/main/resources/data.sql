@@ -1,0 +1,1 @@
+INSERT INTO `t_account`(`id`, `name`) VALUES (1, 'gc');

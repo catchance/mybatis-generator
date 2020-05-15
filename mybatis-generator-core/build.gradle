@@ -1,0 +1,23 @@
+
+description = 'mybatis-generator-core'
+
+jar {
+    manifest {
+        attributes 'Automatic-Module-Name': 'mybatis-generator-core'
+    }
+}
+
+dependencies {
+
+    // import a BOM
+    api platform("org.mybatis.generator:mybatis-generator:${mybatisGeneratorVersion}")
+
+    optional 'log4j:log4j'
+    optional 'org.apache.ant:ant'
+
+    implementation "com.github.javaparser:javaparser-core:${javaparserCore}"
+
+    testImplementation 'junit:junit'
+    testImplementation 'org.hsqldb:hsqldb'
+}
+

@@ -1,0 +1,15 @@
+pluginManagement{
+    // pluginManagement {}块只能出现在settings.gradle文件中，该文件必须是文件中的第一个块
+    plugins {
+        // https://github.com/spring-gradle-plugins
+        id 'org.springframework.boot' version "${springBootVersion}"
+    }
+}
+
+rootProject.name = 'mybatis-generator'
+
+include ':mybatis-generator-core'
+include ':mybatis-generator-gradle-plugin'
+include ':mybatis-generator-maven-plugin'
+include ':mybatis-generator-sample'
+

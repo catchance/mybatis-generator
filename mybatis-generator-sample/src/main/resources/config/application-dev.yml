@@ -1,0 +1,54 @@
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        # 把SpringBoot的Hibernate的debug信息打开
+        SQL: debug
+
+spring:
+  datasource:
+    #进行该配置后，每次启动程序，程序都会运行resources/data.sql文件，对数据库的数据操作，相当于往表中插入数据。
+    data: classpath:data.sql
+    driverClassName: org.h2.Driver
+    # 数据库的名称 当使用embedded database的时候默认testdb
+    name: testdb
+    # 配置连接数据库的密码 h2数据库默认没有密码
+    password: ''
+    # 数据初始化的功能
+    #进行该配置后，每次启动程序，程序都会运行resources/schema.sql文件，对数据库的结构进行操作，相当于新建一个表。
+    schema: classpath:schema.sql
+    # 服务模式配置
+    #spring.datasource.url = jdbc:h2:tcp://localhost/~/db/testdb;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+    # 文件数据库模式配置
+    # spring.datasource.url = jdbc:h2:file:~/db/testdb;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+    #内存数据库模式配置
+    #jdbc:h2:mem:<databasename>
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    # 配置连接数据库的用户名 h2数据库 默认 sa
+    username: sa
+  h2:
+    console:
+      #配置项目启动 h2就启动
+      enabled: true
+      #配置访问地址 默认就是 /h2-console
+      path: /h2-console
+      settings:
+        trace: true
+        #配置能远程访问
+        web-allow-others: true
+  jpa:
+    # 数据库类型声明
+    database: h2
+    hibernate:
+      # ddl-auto:create----每次运行该程序，没有表格会新建表格，表内有数据会清空
+      # ddl-auto:create-drop----每次程序结束的时候会清空表
+      # ddl-auto:update----每次运行程序，没有表格会新建表格，表内有数据不会清空，只会更新
+      # ddl-auto:validate----运行程序会校验数据与数据库的字段类型是否相同，不同会报错
+      ddl-auto: validate
+    open-in-view: true
+    # 是否开启查询语句在控制台打印
+    show-sql: true
+h2:
+  tcp:
+    port: 9092
